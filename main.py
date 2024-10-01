@@ -1,24 +1,37 @@
 from zipfile import ZipFile
 
 
-def ls(args: list):
-    print(args)
+def ls(args: list) -> None:
+    with ZipFile("filesystem.zip", "r") as filesystem:
+        for file in filesystem.namelist():
+            file = file.split('/')
+            print(file[-2])
+
+
+def cd(args: list) -> None:
     pass
 
-def cd(args: list):
-    pass
 
-def pwd_command(pwd: str):
+def mkdir(dirname: str) -> None:
+    with ZipFile("filesystem.zip", "r") as filesystem:
+        for file in filesystem.namelist():
+            file = file.split('/')
+
+def pwd_command(pwd: str) -> None:
     print(pwd)
 
-def sudo(args: list):
+
+def sudo(args: list) -> None:
     pass
 
-def upname(args: list):
+
+def upname(args: list) -> None:
     pass
 
-def uptime(args: list):
+
+def uptime(args: list) -> None:
     pass
+
 
 def exit():
     pass
