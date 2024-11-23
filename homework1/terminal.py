@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.font import Font
 from shell import Shell
 
+
 class Terminal:
     def __init__(self, root, shell):
         self.root = root

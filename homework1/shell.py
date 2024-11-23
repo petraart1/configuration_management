@@ -32,8 +32,8 @@ class Shell:
         self.logger.log_action(f"{self.username}@{self.hostname}", command)
         if command == "ls":
             return self.ls()
-        elif command.startswith("cd "):
-            return self.cd(command.split(" ", 1)[1])
+        elif command.startswith("cd"):
+            return self.cd(command) #.split(" ", 1)[1]
         elif command == "exit":
             return self.exit()
         elif command == "uname":
@@ -47,7 +47,14 @@ class Shell:
         contents = self._file_system.get(self.current_dir, [])
         return "\n".join(sorted(os.path.basename(item.strip("/")) for item in contents))
 
-    def cd(self, path):
+    def cd(self, command):
+        if command == "cd":
+            self.current_dir = "/"
+            return f"Текущая директория: {self.current_dir}"
+
+        print(command)
+        path = command.split(" ", 1)[1]
+        print(path)
         if path == "..":
             if self.current_dir == "/":
                 return f"Ошибка: вы уже в корневой директории."
@@ -79,4 +86,4 @@ class Shell:
         hours, seconds = divmod(rem, 3600)
         minutes = seconds // 60
         uptime_str = f"{days} days,  {hours}:{minutes:02d}" if days > 0 else f"{hours}:{minutes:02d}"
-        return f"{current_time}  up {uptime_str}, 2 users, load averages: 2,20 2,19 2,15"
+        return f"{current_time} up {uptime_str}, 2 users, load averages: 2,20 2,19 2,15"
