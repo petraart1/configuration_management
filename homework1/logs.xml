@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<session><action><timestamp>2024-11-23 16:43:39</timestamp><user>user@myhost</user><command>ls</command></action><action><timestamp>2024-11-23 16:43:42</timestamp><user>user@myhost</user><command>ls</command></action><action><timestamp>2024-11-23 16:43:47</timestamp><user>user@myhost</user><command>exit</command></action></session>
