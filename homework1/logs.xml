@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <session>
   <action>
-    <timestamp>2024-11-23 21:42:34</timestamp>
-    <user>user1</user>
-    <command>ls /bin</command>
-    </action>
-  <action>
-    <timestamp>2024-11-23 21:42:34</timestamp>
-    <user>user2</user>
-    <command>cd /home</command>
+    <timestamp>2024-12-01 16:20:55</timestamp>
+    <user>user@host</user>
+    <command>exit</command>
     </action>
   </session>

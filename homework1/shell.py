@@ -45,7 +45,10 @@ class Shell:
 
     def ls(self):
         contents = self._file_system.get(self.current_dir, [])
-        return "\n".join(sorted(os.path.basename(item.strip("/")) for item in contents))
+        if (len(contents) != 0):
+            return "\n".join(sorted(os.path.basename(item.strip("/")) for item in contents))
+        else:
+            return " "
 
     def cd(self, command):
         if command == "cd":

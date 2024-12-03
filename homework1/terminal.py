@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.font import Font
+from tkinter import PhotoImage
 from shell import Shell
 
 
@@ -8,12 +9,17 @@ class Terminal:
         self.root = root
         self.shell = shell
 
-        self.root.title("Terminal_emulator")
+        self.root.title("Terminal")
         self.root.geometry("800x600")
 
         self.font = Font(family="FiraCodeNFM-Ret", size=18)
 
         self.editor = Text(root, wrap="word", font=self.font, bg="black", fg="white", insertbackground="white")
+
+        self.editor.tag_config("prompt", foreground="green")
+        self.editor.tag_config("user_input", foreground="green")
+        self.editor.tag_config("output", foreground="white")
+
         self.editor.pack(fill=BOTH, expand=1)
 
         self.editor.bind("<Return>", self.on_enter)
@@ -24,7 +30,7 @@ class Terminal:
 
     def insert_prompt(self):
         prompt = f"{self.shell.username}@{self.shell.hostname}:{self.shell.current_dir} $ "
-        self.editor.insert("end", prompt)
+        self.editor.insert("end", prompt, "prompt")
         self.editor.mark_set("prompt", "end-1c")
         self.editor.see("end")
 
@@ -47,14 +53,14 @@ class Terminal:
             return "break"
 
         if result:
-            self.editor.insert("end", f"\n{result}")
-        self.editor.insert("end", "\n")
+            self.editor.insert("end", f"\n{result}\n", "output")
+
         self.insert_prompt()
         return "break"
 
     def execute_on_startup(self, command):
-        self.editor.insert("end", f"{command}\n")
+        self.editor.insert("end", f"{command}\n", "user_input")
         result = self.shell.execute_command(command)
         if result:
-            self.editor.insert("end", f"{result}\n")
+            self.editor.insert("end", f"{result}\n", "output")
         self.insert_prompt()
